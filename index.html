@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>成步堂龙一：异议！</title>
+    <link rel="icon" href="PW.png">
+    <link rel="stylesheet" type="text/css" href="https://melontmd.github.io/ArtCreator/code/style/btns.css">
+    <link rel="stylesheet" type="text/css" href="https://melontmd.github.io/ArtCreator/code/style/sidebar.css">
+<style>
+    body {
+        margin: 0; /* 去除默认的 body 外边距 */
+        user-select: none;
+    }
+    .userdiv {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%); /* 居中 */
+    }
+    .objection {
+        height: 100px;
+        width: 100px;
+    }
+    .layersidebarthings {
+        float: right;
+        height: 100%;
+        width: 300px;
+        top: 0;
+        left: 0;
+        overflow-x: hidden;
+    }
+</style>
+</head>
+<body oncontextmenu="return false;">
+
+    <div class="userdiv">
+        <button onclick="objection()" class="objection" id="objection">异议！</button>
+        <button onclick="toggleObjection()" class="objection" id="yiyi">自动异议</button>
+    </div>
+
+    <div class="Rightsidebar" id="Rightsidebar">
+        <div class="layersidebarthings">
+            <button class="Rightsidebarbtn" onclick="toggleRightsidebar()">设置&nbsp;&nbsp;.☰</button>
+            <select id="lang" class="saveimgbtnup">
+                <optgroup label="官方">
+                    <option value="english">英语(objection)</option>
+                    <option value="japanese">日语(異議あり)</option>
+                    <option value="chineseYY">汉语(异议)</option>
+                    <option value="chineseFD">汉语(反对)</option>
+                    <option value="french">法语(objection)</option>
+                    <option value="german">德语(einspruch)</option>
+                    <option value="korean">韩语(이의있음)</option>
+                    <option value="spanish">西班牙语(protesto)</option>
+                    <option value="italian">意大利语(obiezione)</option>
+                <optgroup label="整活">
+                    <option value="nonsense">汉语(一派胡言)</option>
+            </select>
+        </div>
+    </div>
+
+    <script>
+        var autoObjection = false; 
+
+        function toggleObjection() {
+            autoObjection = !autoObjection; // 切换自动异议模式
+            var button = document.getElementById("yiyi");
+            var targetButton = document.getElementById("objection");
+            targetButton.disabled = !targetButton.disabled; // 切换目标按钮的禁用状态
+
+            if (button.innerText === "手动异议") {
+                button.innerText = "自动异议";
+            } else {
+                button.innerText = "手动异议";
+            }
+
+            if (autoObjection) {
+                objectionInterval = setInterval(objection, 400);
+            } else {
+                clearInterval(objectionInterval); // 停止自动异议
+            }
+        }
+
+        function toggleRightsidebar() {
+            var sidebar = document.getElementById("Rightsidebar");
+            if (sidebar.style.width === "300px") {
+                sidebar.style.width = "48px";
+            } else {
+                sidebar.style.width = "300px";
+            }
+        }
+
+        function objection() {
+            var langSelect = document.getElementById("lang");
+            var selectedLang = langSelect.value;
+            var audio;
+
+            if (selectedLang === "chineseYY") {
+                audio = new Audio('sound/official/ChineseYY.mp3');
+            } else
+
+            if (selectedLang === "chineseFD") {
+                audio = new Audio('sound/official/ChineseFD.mp3');
+            } else
+
+            if (selectedLang === "french") {
+                audio = new Audio('sound/official/French.wav');
+            } else
+
+            if (selectedLang === "english") {
+                audio = new Audio('sound/official/English.mp3');
+            } else
+
+            if (selectedLang === "japanese") {
+                audio = new Audio('sound/official/Japanese.mp3');
+            }
+
+            if (selectedLang === "german") {
+                audio = new Audio('sound/official/German.wav');
+            }
+
+            if (selectedLang === "korean") {
+                audio = new Audio('sound/official/Korean.wav');
+            }
+            
+            if (selectedLang === "spanish") {
+                audio = new Audio('sound/official/Spanish.wav');
+            }
+
+            if (selectedLang === "italian") {
+                audio = new Audio('sound/official/Italian.wav');
+            }
+
+
+
+            if (selectedLang === "nonsense") {
+                audio = new Audio('sound/unofficial/Nonsense.wav');
+            }
+            audio.play();
+        }
+    </script>
+</body>
+</html>
